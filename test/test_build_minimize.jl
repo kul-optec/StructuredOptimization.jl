@@ -42,15 +42,18 @@ xp = copy(~x)
 @test norm(xp-xpg) <= 1e-4
 
 # test nonconvex Rosenbrock function with known minimum
-solvers = [ZeroFPR(tol = 1e-6), PANOC(tol = 1e-6)]
+function test_solver(solver)
+	x = Variable(1)
+	y = Variable(1)
+	a, b = 2.0, 100.0
+
+	cf = norm(x - a)^2 + b * norm(pow(x, 2) - y)^2
+	@minimize cf + 1e-10 * norm(x, 1) + 1e-10 * norm(y, 1) with solver
+
+	@test norm(~x - [a]) < 1e-4
+	@test norm(~y - [a^2]) < 1e-4
+end
+solvers = [ZeroFPR(; tol=1e-6), PANOC(; tol=1e-6)]
 for solver in solvers
-    x = Variable(1)
-    y = Variable(1)
-    a,b = 2.0, 100.0
-
-    cf = norm(x-a)^2+b*norm(pow(x,2)-y)^2
-    @minimize cf+1e-10*norm(x,1)+1e-10*norm(y,1) with solver
-
-    @test norm(~x-[a]) < 1e-4
-    @test norm(~y-[a^2]) < 1e-4
+	test_solver(solver)
 end

@@ -16,11 +16,12 @@ Returns a `Variable` of dimension `dims` initialized with an array of all zeros.
 Returns a `Variable` of dimension `size(x)` initialized with `x`
 
 """
-function Variable(T::Type, args::Vararg{I,N}) where {I <: Integer,N}
-	Variable{T,N,Array{T,N}}(zeros(T, args...))
+function Variable(T::Type, args::Int...)
+  N = length(args)
+  Variable{T,N,Array{T,N}}(zeros(T, args...))
 end
 
-function Variable(args::Vararg{I}) where {I <: Integer}
+function Variable(args::Int...)
   Variable(zeros(args...))
 end
 
@@ -29,7 +30,6 @@ end
 function Base.show(io::IO, x::Variable)
   print(io, "Variable($(eltype(x.x)), $(size(x.x)))")
 end
-
 
 """
 	~(x::Variable)
@@ -46,7 +46,7 @@ size(x::Variable, [dim...])
 Like `size(A::AbstractArray, [dims...])` returns the tuple containing the dimensions of the variable `x`.
 """
 size(x::Variable) = size(x.x)
-size(x::Variable, dim::I) where { I <: Integer} = size(x.x, dim)
+size(x::Variable, dim::Integer) = size(x.x, dim)
 
 """
 eltype(x::Variable)
