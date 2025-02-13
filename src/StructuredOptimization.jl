@@ -9,6 +9,11 @@ using ProximalAlgorithms
 import ProximalAlgorithms: ZeroFPR, PANOC, PANOCplus
 export ZeroFPR, PANOC, PANOCplus
 
+ProximalAlgorithms.value_and_gradient(f, x) = begin
+  y, fy = gradient(f, x)
+  return fy, y
+end
+
 include("syntax/syntax.jl")
 include("calculus/precomposeNonlinear.jl") # TODO move to ProximalOperators?
 include("arraypartition.jl") # TODO move to ProximalOperators?

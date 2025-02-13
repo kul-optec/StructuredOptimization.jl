@@ -2,6 +2,7 @@
 
 [![Build status](https://github.com/JuliaFirstOrder/StructuredOptimization.jl/workflows/CI/badge.svg)](https://github.com/JuliaFirstOrder/StructuredOptimization.jl/actions?query=workflow%3ACI)
 [![codecov](https://codecov.io/gh/JuliaFirstOrder/StructuredOptimization.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/JuliaFirstOrder/StructuredOptimization.jl)
+[![Aqua QA](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
 
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://juliafirstorder.github.io/StructuredOptimization.jl/stable)
 [![](https://img.shields.io/badge/docs-latest-blue.svg)](https://juliafirstorder.github.io/StructuredOptimization.jl/latest)
